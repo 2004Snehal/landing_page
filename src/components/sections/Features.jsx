@@ -4,15 +4,15 @@ const Features = () => {
   const features = [
     {
       title: "Real-time Tracking",
-      description: "Monitor expenses as they happen with our intuitive mobile app"
+      description: "Monitor expenses as they happen with our intuitive website"
     },
     {
       title: "Smart Automation",
       description: "Automatic receipt scanning and expense categorization"
     },
     {
-      title: "Global Support",
-      description: "Multi-currency support and 24/7 customer service"
+      title: "Smart Filing",
+      description: "Effortlessly edit your invoices anytime, anywhere, and share them instantly with just one click. Simplify your workflow and stay organized like never before!"
     }
   ];
 

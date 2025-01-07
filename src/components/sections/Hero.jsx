@@ -79,7 +79,7 @@ const Hero = () => {
               <div className="relative w-full h-full">
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-lg"
-                  src="https://www.youtube.com/embed/CrcVIzicmuw?autoplay=1"
+                  src="https://www.youtube.com/embed/evNtw03DmjM?autoplay=1"
                   style={{ border: 'none' }}
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
