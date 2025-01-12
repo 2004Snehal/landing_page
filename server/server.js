@@ -3,15 +3,16 @@ import cors from 'cors';
 import { mongoConnect } from './models/db.js';
 import userRouter from './routes/userRoute.js'
 import internRouter from './routes/internRoute.js'
-
+import dotenv from 'dotenv';
+dotenv.config()
 
 
 
 const app = express();
 
-// Configure CORS to accept requests from your frontend
+
 app.use(cors({
-    origin: 'http://localhost:5173', // Your Vite frontend URL
+    origin: process.env.REACT_URL || 'http://localhost:3000',
     methods: ['POST', 'GET', 'OPTIONS'],
     credentials: true,
     allowedHeaders: ['Content-Type']
@@ -31,7 +32,8 @@ app.get('/api/test', (req, res) => {
 app.use('/user',userRouter);
 app.use('/intern',internRouter);
 
-const PORT = 5174;
+const PORT = process.env.PORT || 5174;
+
 app.listen(PORT, async () => {
     console.log(`Server running on port ${PORT}`);
 });
