@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Play } from 'lucide-react';
 import ContactForm from '../form/contact'; // Import the ContactForm component
 

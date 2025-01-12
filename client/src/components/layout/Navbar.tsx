@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import hodosLogo from '../../assets/HODOS (1).png';
 import ContactForm from '../form/contact'; // Import the ContactForm component
 
