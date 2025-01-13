@@ -84,7 +84,10 @@ const ContactForm = () => {
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.error || 'Failed to submit form');
+          setSubmitStatus({ type: 'error', message: data.message || 'Failed to submit form' });
+        } else if (response.ok) {
+          setSubmitStatus({ type: 'success', message: 'Form submitted successfully!' });
+
         }
 
         setFormData({
@@ -93,7 +96,6 @@ const ContactForm = () => {
           message: ''
         });
 
-        setSubmitStatus({ type: 'success', message: 'Form submitted successfully!' });
       } catch (error) {
         console.error('Submission error:', error);
         setSubmitStatus({
@@ -112,11 +114,10 @@ const ContactForm = () => {
 
       {submitStatus && (
         <div
-          className={`mb-4 p-3 rounded ${
-            submitStatus.type === 'success'
+          className={`mb-4 p-3 rounded ${submitStatus.type === 'success'
               ? 'bg-green-100 text-green-700'
               : 'bg-red-100 text-red-700'
-          }`}
+            }`}
         >
           {submitStatus.message}
         </div>
@@ -133,9 +134,8 @@ const ContactForm = () => {
             name="name"
             value={formData.name}
             onChange={handleInputChange}
-            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.name ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-300'
+              }`}
           />
           {errors.name && <p className="text-red-600 text-sm mt-1">{errors.name}</p>}
         </div>
@@ -150,9 +150,8 @@ const ContactForm = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.email ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email ? 'border-red-500' : 'border-gray-300'
+              }`}
           />
           {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
         </div>
@@ -167,9 +166,8 @@ const ContactForm = () => {
             value={formData.message}
             onChange={handleInputChange}
             rows={4}
-            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.message ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.message ? 'border-red-500' : 'border-gray-300'
+              }`}
           />
           {errors.message && <p className="text-red-600 text-sm mt-1">{errors.message}</p>}
         </div>
@@ -177,9 +175,8 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full bg-blue-600 text-white px-8 py-3 rounded-lg transition-colors ${
-            isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
-          }`}
+          className={`w-full bg-blue-600 text-white px-8 py-3 rounded-lg transition-colors ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
+            }`}
         >
           {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>

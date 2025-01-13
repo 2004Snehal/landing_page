@@ -81,15 +81,16 @@ const InternshipForm: React.FC = () => {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to submit the application.');
+        setSubmitStatus({ type: 'error', message: data.message || 'Failed to submit form' });
+      } else if (response.ok) {
+        setSubmitStatus({ type: 'success', message: 'Form submitted successfully!' });
+
       }
 
-      setSubmitStatus({
-        type: 'success',
-        message: 'Thank you for your application! We will review it and get back to you soon.',
-      });
+
       setFormData({
         name: '',
         email: '',
@@ -119,11 +120,10 @@ const InternshipForm: React.FC = () => {
 
           {submitStatus.message && (
             <div
-              className={`p-4 rounded-md flex items-center gap-2 ${
-                submitStatus.type === 'error'
+              className={`p-4 rounded-md flex items-center gap-2 ${submitStatus.type === 'error'
                   ? 'bg-red-50 text-red-700'
                   : 'bg-green-50 text-green-700'
-              }`}
+                }`}
             >
               {submitStatus.type === 'error' ? (
                 <XCircle className="h-5 w-5" />
@@ -150,9 +150,8 @@ const InternshipForm: React.FC = () => {
                   name={name}
                   value={formData[name as keyof FormData]}
                   onChange={handleChange}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors[name as keyof FormData] ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors[name as keyof FormData] ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors[name as keyof FormData] && (
                   <p className="text-sm text-red-600 mt-1">
@@ -171,9 +170,8 @@ const InternshipForm: React.FC = () => {
                 name="education"
                 value={formData.education}
                 onChange={handleChange}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors.education ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.education ? 'border-red-500' : 'border-gray-300'
+                  }`}
               >
                 <option value="">Select Education Level</option>
                 <option value="High School">High School</option>
@@ -195,9 +193,8 @@ const InternshipForm: React.FC = () => {
                 name="dept"
                 value={formData.dept}
                 onChange={handleChange}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors.dept ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.dept ? 'border-red-500' : 'border-gray-300'
+                  }`}
               >
                 <option value="">Select Department</option>
                 <option value="Engineering">Engineering</option>
